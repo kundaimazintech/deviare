@@ -15,9 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.contrib.auth import views as auth_views
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('weatherapp/', include('weatherapp.urls'))
+    path('', include('weatherapp.urls')),
+    path('accounts/login/', auth_views.LoginView.as_view(), name='login'),
+    path('accounts/login/', auth_views.LogoutView.as_view(), {'next_page':'/'}, name='logout')
 
 ]
+urlpatterns += staticfiles_urlpatterns()

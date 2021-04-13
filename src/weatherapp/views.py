@@ -1,9 +1,11 @@
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 import requests
 
 # Create your views here.
 
 
+@login_required()
 def get_weather(request):
     api_key = "3de49393e4baaf1d1a4a326034002890"
     city_id = "993800"
@@ -14,3 +16,13 @@ def get_weather(request):
     # return JsonResponse(responses.content, safe=False)
 
     return HttpResponse(responses.content)
+
+
+def save_weather(request):
+    return request
+
+
+def view_weather():
+    return
+
+
